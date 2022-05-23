@@ -25,4 +25,28 @@ class UserController extends Controller
 
         return view('users.show', compact('user'));
     }
+
+    public function create()
+    {
+        return view('users.create');
+    }
+
+    public function store(Request $request)
+    {
+        // $inputs = $request->only([
+        //     'name',
+        //     'email',
+        //     'password'
+        // ]);
+        // poderia inserir criando um objeto do User , setando os valores 
+        // e o method save, porém essa é menos verbosa
+        $inputs = $request->all();
+        
+        $inputs['password'] = bcrypt($inputs['password']);
+
+        $user = User::create($inputs);
+
+        return redirect()->route('users.index');
+        // return redirect()->route('users.show', $user->id);
+    }
 }
