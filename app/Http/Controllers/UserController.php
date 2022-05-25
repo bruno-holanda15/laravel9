@@ -12,12 +12,9 @@ class UserController extends Controller
     {
         $search = $request->search;
 
-        $users = User::where(function ($query) use ($search) {
-            if (!empty($search)) {
-                $query->where('name','LIKE',"%{$search}%");
-                $query->orWhere('name',$search);
-            }
-        })->get();
+        $users = new User();
+
+        $users = $users->searchUsers($search);
 
         return view('users.index', compact('users'));
     }

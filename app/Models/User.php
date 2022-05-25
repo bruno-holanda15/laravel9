@@ -41,4 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function searchUsers($search = '')
+    {
+        return $this->where(function ($query) use ($search) {
+            if (!empty($search)) {
+                $query->where('name','LIKE',"%{$search}%");
+                $query->orWhere('name',$search);
+            }
+        })->get();
+    }
 }
