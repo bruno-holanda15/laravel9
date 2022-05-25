@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $search = $request->search ?? '';
+        $search = $request->search;
 
         $users = User::where(function ($query) use ($search) {
             if (!empty($search)) {
