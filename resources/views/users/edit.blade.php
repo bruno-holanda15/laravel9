@@ -3,13 +3,13 @@
 @section('title', 'Novo usuário')
     
 @section('content')
-    <h1>
+    <h1 class="py-2 px-3">
         Edição de usuário {{ $user->name }}
     </h1>
     
     @include('includes.validations-form')
 
-    <form action="{{ route('users.update', $user->id) }}" method="POST">
+    <form action="{{ route('users.update', $user->id) }}"  method="POST">
         {{-- <input type="hidden" name="_method" value="PUT"> --}}
         @method('PUT')
         @include('users._partials.form')

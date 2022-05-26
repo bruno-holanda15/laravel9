@@ -3,7 +3,7 @@
 @section('title', 'Novo usuário')
     
 @section('content')
-    <h1>
+    <h1 class="py-2 px-3">
         Criação de usuário
     </h1>
 
